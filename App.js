@@ -1,33 +1,26 @@
-import React from 'react';
-import { StyleSheet, Text, View,Image } from 'react-native';
-import { Provider } from 'react-redux';
-import SignInScreen from './screens/Auth/SignInScreen';
-import SignUpScreen from './screens/Auth/SignUpScreen';
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import HomeScreen from './screens/HomeScreen';
+import SignIn from './screens/Auth/SignInScreen'
+import Product from './screens/ProductScreen';
 
 const Stack = createStackNavigator();
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Welcome To Our Home Page</Text>
-    </View>
-  );
-}
-<Stack.Navigator
-            screenOptions={{
-              headerTintColor: '#fff',
-              headerStyle:{
-                backgroundColor: "#0071bd",
-                height:80,
-              },
-            }}>
-</Stack.Navigator>
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default class App extends React.Component { 
+  render(){
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{ title: 'Dewsanda Natural Product' }}
+        />
+        <Stack.Screen name="SignIn" component={SignIn} />
+        <Stack.Screen name="Product" component={Product}/>
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
+}
